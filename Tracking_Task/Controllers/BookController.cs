@@ -65,37 +65,33 @@ public IActionResult BookUpdate([FromBody] Books books)
     var bookInDb = _context.Books.Include(u => u.User).FirstOrDefault();
     if (bookInDb != null && ModelState.IsValid)
     {
-        books.UserId = bookInDb.UserId; // Assign the foreign key value from the existing book
+        books.UserId = bookInDb.UserId;
 
-        _context.Entry(bookInDb).CurrentValues.SetValues(books); // Update the bookInDb entity with the new values
+        _context.Entry(bookInDb).CurrentValues.SetValues(books); 
         _context.SaveChanges();
         return Ok();
     }
     return BadRequest();
 }
 
-        ////[HttpDelete("{id}")]
-        ////public Task Delete(int id)
-        ////{
-        ////    return _booksRepository.DeleteBook(id);
-        ////}
+      
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            // Find the book with the given id in the database
+            
             var book = _context.Books.FirstOrDefault(b => b.Id == id);
 
-            // Check if the book exists
+          
             if (book == null)
             {
-                return NotFound(); // Return a 404 Not Found response
+                return NotFound(); 
             }
 
-            // Remove the book from the database
+           
             _context.Books.Remove(book);
             _context.SaveChanges();
 
-            return NoContent(); // Return a 204 No Content response
+            return NoContent();
         }
 
     }

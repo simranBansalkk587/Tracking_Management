@@ -22,18 +22,14 @@ namespace Tracking_Task.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InivitedTable>>> GetInvitedTables()
         {
-            var invitedTables = await _Context.InivitedTables
-                .Include(i => i.User)
-                .ToListAsync();
+            var invitedTables = await _Context.InivitedTables.Include(i => i.User).ToListAsync();
 
             return Ok(invitedTables);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<InivitedTable>> GetInvitedTable(int id)
         {
-            var invitedTable = await _Context.InivitedTables
-                .Include(i => i.User)
-                .FirstOrDefaultAsync(i => i.Id == id);
+            var invitedTable = await _Context.InivitedTables .Include(i => i.User).FirstOrDefaultAsync(i => i.Id == id);
 
             if (invitedTable == null)
             {
@@ -45,11 +41,25 @@ namespace Tracking_Task.Controllers
         [HttpPost]
         public async Task<ActionResult<InivitedTable>> CreateInvitedTable(InivitedTable invitedTable)
         {
+            
             _Context.InivitedTables.Add(invitedTable);
             await _Context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetInvitedTable), new { id = invitedTable.Id }, invitedTable);
         }
+        [HttpGet("api/invited-tables")]
+        public IActionResult GetInvitedTableByEmail(string email)
+        {
+            var invitedTable = _Context.InivitedTables.FirstOrDefault(i => i.Email == email);
+
+            if (invitedTable == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(invitedTable);
+        }
+
 
     }
 }

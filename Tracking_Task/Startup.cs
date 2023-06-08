@@ -70,6 +70,18 @@ namespace Tracking_Task
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tracking_Task", Version = "v1" });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "My Police",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
         }
 
 
@@ -82,6 +94,7 @@ namespace Tracking_Task
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tracking_Task v1"));
             }
+            app.UseCors("My Police");
 
             app.UseHttpsRedirection();
 
