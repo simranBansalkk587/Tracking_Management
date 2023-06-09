@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Login } from '../login';
+import { LoginService } from '../login.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,4 +10,25 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  login:Login=new Login();
+  loginErrorMsg:string="";
+  constructor(private loginService:LoginService,private router:Router ){}
+
+
+  loginClick()
+  {
+    
+    alert(this.login.username)//testing
+    this.loginService.CheckUser(this.login).subscribe(
+      (response)=>{
+        
+        this.router.navigateByUrl("/home");
+      },
+      (error)=>{
+        console.log(error);
+       //alert('Wrong User Password');
+      this.loginErrorMsg="Wrong User Message";
+      }
+    );
+  }
 }

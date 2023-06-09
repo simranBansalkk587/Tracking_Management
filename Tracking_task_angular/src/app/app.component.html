@@ -38,8 +38,8 @@
     </ul>
     
   <a routerLink="register"  class="btn btn-outline-success my-2 my-sm-0">Register<i class="fa fa-user-plus"></i></a>
-  <button class="btn btn-outline-success my-2 my-sm-0">LogOut <i class="fa fa-sign-in"></i></button>
-   <a routerLink="login" class="btn btn-outline-success my-2 my-sm-0">login</a>
+  <button *ngIf="loginService.CurrentUsername !=''"(click)="logoutClick()" class="btn btn-outline-success my-2 my-sm-0">LogOut <i class="fa fa-sign-in"></i></button>
+   <a routerLink="login" *ngIf="loginService.CurrentUsername === ''" type="submit" class="btn btn-outline-success my-2 my-sm-0">login</a>
   </div>
 </nav>
 <div>

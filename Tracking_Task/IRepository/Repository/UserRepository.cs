@@ -21,9 +21,9 @@ namespace Tracking_Task.IRepository.Repository
             _context = context;
             _appSettings = appSettings.Value;
         }
-        public User Authenticate(string Name, string password)
+        public User Authenticate(string Email, string password)
         {
-            var userInDb = _context.Users.FirstOrDefault(u => u.Name == Name && u.Password == password);
+            var userInDb = _context.Users.FirstOrDefault(u => u.Email == Email && u.Password == password);
             if (userInDb == null) return null;
             //jwt
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -32,7 +32,7 @@ namespace Tracking_Task.IRepository.Repository
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, userInDb.Id.ToString()),
+                    new Claim(ClaimTypes.Email, userInDb.Id.ToString()),
                     new Claim(ClaimTypes.Role,userInDb.Role)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
@@ -46,9 +46,9 @@ namespace Tracking_Task.IRepository.Repository
             return userInDb;
         }
 
-        public bool IsUniqueUser(string Name)
+        public bool IsUniqueUser(string Email)
         {
-            var User = _context.Users.FirstOrDefault(r => r.Name == Name);
+            var User = _context.Users.FirstOrDefault(r => r.Email == Email);
             if (User == null)
                 return true;
             else

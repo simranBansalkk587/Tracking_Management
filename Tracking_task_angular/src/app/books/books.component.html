@@ -1,1 +1,148 @@
-<p>books works!</p>
+<h2 class="text-primary text-center">Books</h2>
+<div class="m-5">
+<button class="btn btn-info p-2 m-2 " data-toggle="modal" data-target="#newmodal"> 
+    <i class="fa fa-plus">
+        New Books
+    </i>
+</button>
+<div class="border">
+    <table class="table table-striped table-border">
+        <thead>
+            <tr>
+                <!-- <th>Name</th> -->
+                
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>UserId</th>
+                <th>UserName</th>
+                <th>Track Details</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let books of BooksList'>
+            
+           <td>{{books.title}}</td> 
+           <td>{{books.author}}</td>
+           <td>{{books.isbn}}</td>
+           <td>{{books.user.id}}</td>
+           <td>{{books.user.name}}</td>
+           <td>
+            <button class="btn btn-info m-1"(click)="EditClick(books)"  data-toggle="modal" data-target="#editmodal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-danger m-1" (click)="DeleteClick(books.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+           
+              
+           
+          </tr> 
+        </tbody>
+    </table>
+</div>
+</div>
+<!-- Save -->
+ <div class="modal" tabindex="-1" role="dialog" id="newmodal"> 
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+             New Book</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+             <span aria-hidden="true">&times;</span>
+          </button> 
+        </div>
+        <div class="modal-body">
+         <div  class="form-group row">
+            <label for="name" class="col-sm-4"> Title</label>
+            <div class="col-sm-8">
+                <input id="title" [(ngModel)]="NewBooks.title" type="text" name="title" placeholder="Enter Title" class="form-control"/>
+                
+            </div>
+         </div>
+         <div  class="form-group row">
+            <label for="txtauthor" class="col-sm-4"> Author</label>
+            <div class="col-sm-8">
+                <input id="txtauthor" [(ngModel)]="NewBooks.author" type="text" name="author" placeholder="Enter Author" class="form-control">
+            </div>
+         </div>
+         <div class="form-group row">
+                
+            <label for="txtisbn" class="col-sm-4 col-form-label">ISBN</label>
+            <div class="col-sm-8">
+            <input id="txtisbn"[(ngModel)]="NewBooks.isbn" type="text"name="isbn"placeholder="Enter ISBN"class="form-control" />
+          </div>
+          </div>
+          <div class="form-group row">
+                
+            <label for="txtuser" class="col-sm-4 col-form-label">UserId</label>
+            <div class="col-sm-8">
+            <input id="txtuser"[(ngModel)]="NewBooks.userid" type="text"name="txtuser"placeholder="Enter UserId"class="form-control" />
+          </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="SaveClick()"data-dismiss="modal" class="btn btn-primary">Save </button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+<!-- Edit Code -->
+
+ <div class="modal" tabindex="-1" role="dialog" id="editmodal"> 
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title btn btn-info">
+              Edit Ticket</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <div  class="form-group row">
+            <label for="txttitle" class="col-sm-4">Title</label>
+            <div class="col-sm-8">
+                <input id="txttitle" [(ngModel)]="EditBooks.title" type="text" name="title" placeholder="Enter Title" class="form-control">
+            </div>
+         </div>
+         <div  class="form-group row">
+            <label for="txtauthor" class="col-sm-4"> Author</label>
+            <div class="col-sm-8">
+                <input id="txtauthor" [(ngModel)]="EditBooks.author" type="text" name="author" placeholder="Enter Author" class="form-control">
+            </div>
+         </div>
+         <div class="form-group row">
+                
+            <label for="txtisbn" class="col-sm-4 col-form-label">ISBN</label>
+            <div class="col-sm-8">
+            <input id="txtisbn"[(ngModel)]="EditBooks.isbn" type="text"name="isbn"placeholder="Enter ISBN"class="form-control" />
+          </div>
+          </div>
+          <div class="form-group row">
+                
+            <label for="txtuser" class="col-sm-4 col-form-label">UserId</label>
+            <div class="col-sm-8">
+            <input id="txtuser"[(ngModel)]="EditBooks.userid" type="text"name="userid"placeholder="Enter UserId"class="form-control" />
+          </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button  (click)="UpdateClick()"data-dismiss="modal"  class="btn btn-primary">Update </button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+        </div>
+       
+      </div>
+    </div>
+
+
+
+
+
+  

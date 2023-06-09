@@ -8,8 +8,8 @@ namespace Tracking_Task.IRepository
 {
     public interface IUserRepository
     {
-        bool IsUniqueUser(string Name);
-        User Authenticate(string Name, string password);
+        bool IsUniqueUser(string Email);
+        User Authenticate(string Email, string password);
         User Register(string Name, string Address,string Age,string Email,String Password,string role);
     }
 }

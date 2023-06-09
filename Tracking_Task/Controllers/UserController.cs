@@ -35,7 +35,7 @@ namespace Tracking_Task.Controllers
                         + "<p style=\"color: #444; font-size: 16px;\">Thank you and enjoy your experience with us!</p>"
                         + "<p style=\"color: #777; font-size: 14px;\">Best regards,</p>"
 
-                        + "<p style=\"color: #FF0000; font-size: 14px;\">You've successfully register to us</p>"
+                        + "<p style=\"color: #444; font-size: 14px;\">You've successfully register to us</p>"
                         + "</div>"
                         + "</body></html>";
 
@@ -58,7 +58,7 @@ namespace Tracking_Task.Controllers
 
         public IActionResult Authenticate([FromBody] UserVM userVM)
         {
-            var user = _userRepository.Authenticate(userVM.Name,userVM.Password);
+            var user = _userRepository.Authenticate(userVM.Email,userVM.Password);
 
             if (user == null) return BadRequest("Wrong User/Password");
             return Ok(user);

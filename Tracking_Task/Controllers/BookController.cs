@@ -34,23 +34,13 @@ namespace Tracking_Task.Controllers
         }
 
 
-        //public IActionResult SaveBooks(Books book)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _booksRepository.AddBook(book);
-        //        return Ok();
-        //    }
-        //    return BadRequest(ModelState);
-        //}
         [HttpPost]
         public IActionResult BookSave([FromBody] Books books)
         {
-            var bookInDb = _context.Books.Include(b => b.User).FirstOrDefault();
-            if (bookInDb != null && ModelState.IsValid)
+            var userInDb = _context.Users.FirstOrDefault(u => u.Id == books.UserId);
+            if (userInDb != null && ModelState.IsValid)
             {
-                books.UserId = bookInDb.User.Id; // Set the foreign key value
-
+                books.User = userInDb;
                 _context.Books.Add(books);
                 _context.SaveChanges();
                 return Ok();
@@ -59,22 +49,22 @@ namespace Tracking_Task.Controllers
         }
 
 
-        [HttpPut]
-public IActionResult BookUpdate([FromBody] Books books)
-{
-    var bookInDb = _context.Books.Include(u => u.User).FirstOrDefault();
-    if (bookInDb != null && ModelState.IsValid)
-    {
-        books.UserId = bookInDb.UserId;
 
-        _context.Entry(bookInDb).CurrentValues.SetValues(books); 
-        _context.SaveChanges();
-        return Ok();
-    }
-    return BadRequest();
-}
+       [HttpPut]
+        public IActionResult BookUpdate([FromBody] Books books)
+        {
+            var userInDb = _context.Users.FirstOrDefault(u => u.Id == books.UserId);
+            if (userInDb != null && ModelState.IsValid)
+            {
+                books.User = userInDb;
+                _context.Books.Update(books);
+                _context.SaveChanges();
+                return Ok();
+            }
+            return BadRequest();
+        }
 
-      
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
