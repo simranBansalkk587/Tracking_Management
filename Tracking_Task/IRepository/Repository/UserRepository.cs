@@ -25,6 +25,9 @@ namespace Tracking_Task.IRepository.Repository
         {
             var userInDb = _context.Users.FirstOrDefault(u => u.Email == Email && u.Password == password);
             if (userInDb == null) return null;
+            var books = _context.Books.Where(b => b.UserId == userInDb.Id).ToList();
+          // userInDb.Id = books;
+          //  if (books == null) return null;
             //jwt
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -46,6 +49,20 @@ namespace Tracking_Task.IRepository.Repository
             return userInDb;
         }
 
+        public async Task<List<User>> GetAll()
+        {
+            return _context.Users.ToList();
+        }
+
+        public IEnumerable<User> GetAllUser()
+        {
+            return _context.Users.ToList();
+        }
+
+       
+
+       
+
         public bool IsUniqueUser(string Email)
         {
             var User = _context.Users.FirstOrDefault(r => r.Email == Email);
@@ -66,7 +83,7 @@ namespace Tracking_Task.IRepository.Repository
 
                 Password = Password,
                 Email = Email,
-                Role = "Admin"
+               // Role = "Admin"
             };
             _context.Users.Add(user);
             _context.SaveChanges();

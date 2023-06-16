@@ -32,14 +32,18 @@
           <i class="fa- fa-circle-user"></i> Invite
         </a>
       </li>
-      
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="inviteperson">
+          <i class="fa- fa-circle-user"></i> Invitedperson
+        </a>
+      </li>
       
       
     </ul>
     
-  <a routerLink="register"  class="btn btn-outline-success my-2 my-sm-0">Register<i class="fa fa-user-plus"></i></a>
-  <button *ngIf="loginService.CurrentUsername !=''"(click)="logoutClick()" class="btn btn-outline-success my-2 my-sm-0">LogOut <i class="fa fa-sign-in"></i></button>
-   <a routerLink="login" *ngIf="loginService.CurrentUsername === ''" type="submit" class="btn btn-outline-success my-2 my-sm-0">login</a>
+  <a routerLink="register"  class="btn btn-outline-dark my-2 my-sm-0">Register<i class="fa fa-user-plus"></i></a>
+  <button *ngIf="loginService.CurrentUsername !=''"(click)="logoutClick()" class="btn btn-outline-dark my-2 my-sm-0">LogOut <i class="fa fa-sign-in"></i></button>
+   <a routerLink="login" *ngIf="loginService.CurrentUsername === ''" type="submit" class="btn btn-outline-dark my-2 my-sm-0">login</a>
   </div>
 </nav>
 <div>

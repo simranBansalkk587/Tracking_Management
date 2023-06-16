@@ -13,4 +13,5 @@ export class RegisterService {
   {
     return this.httpclient.post<Register>("https://localhost:44365/api/User/User",newregister)
   }
+ 
 }

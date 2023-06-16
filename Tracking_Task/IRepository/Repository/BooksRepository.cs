@@ -31,16 +31,6 @@ namespace Tracking_Task.IRepository.Repository
 
         }
 
-        //public async Task DeleteBooks(int Id)
-        //{
-        //    var bookInDB = await _context.Books.FindAsync(Id);
-        //    _context.Books.Remove(bookInDB);
-        //    _context.SaveChanges();
-        //}
-
-
-
-
         public async Task<List<Books>> GetAll()
         {
             return _context.Books.ToList();
@@ -51,12 +41,6 @@ namespace Tracking_Task.IRepository.Repository
             return await _context.Books.FindAsync(Id);
         }
 
-
-        //public async Task UpdateBook(Books books)
-        //{
-        //    _context.Books.Update(books);
-        //    await _context.SaveChangesAsync();
-        //}
 
         public async Task UpdateBooks(Books Book)
         {

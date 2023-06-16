@@ -4,17 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tracking_Task.Data;
 using Tracking_Task.IRepository;
 using Tracking_Task.Models;
 
 namespace Tracking_Task.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
         public UserController(IUserRepository userRepository, IEmailSender emailSender)
         {
             _userRepository = userRepository;
@@ -25,6 +28,10 @@ namespace Tracking_Task.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!User.IsInRole("Admin"))
+                {
+                    return Unauthorized();
+                }
                 if (user.Email != null)
                 {
                     string emailBody = "<html><body style=\"font-family: Arial, sans-serif; background-image: background-repeat: no-repeat; background-size: cover; padding: 20px;\">"
@@ -49,7 +56,7 @@ namespace Tracking_Task.Controllers
 
                 // user.Password = _encryptionRepository.EncryptPassword(user.Password);
 
-                var UserInfo = _userRepository.Register(user.Name,user.Address,user.Age,user.Email,user.Password,user.Role);
+                var UserInfo = _userRepository.Register(user.Name, user.Address, user.Age, user.Email, user.Password, user.Role);
                 if (UserInfo == null) return BadRequest();
             }
             return Ok();
@@ -58,11 +65,39 @@ namespace Tracking_Task.Controllers
 
         public IActionResult Authenticate([FromBody] UserVM userVM)
         {
-            var user = _userRepository.Authenticate(userVM.Email,userVM.Password);
+            var user = _userRepository.Authenticate(userVM.Email, userVM.Password);
 
             if (user == null) return BadRequest("Wrong User/Password");
             return Ok(user);
         }
+        //    public IActionResult Authenticate([FromBody] UserVM userVM)
+        //    {
+        //        var user = _userRepository.Authenticate(userVM.Email, userVM.Password);
 
+        //        if (user == null)
+        //        {
+        //            return BadRequest("Wrong User/Password");
+        //        }
+
+        //        if (user.Role == "Admin")
+        //        {
+        //            // Perform actions specific to the admin user
+        //            var allData = _userRepository.GetAll(); // Replace with the appropriate method to fetch all the data
+        //            return Ok(allData);
+        //        }
+        //        else
+        //        {
+        //            // Perform actions for regular users
+        //            return Ok(user);
+        //        }
+        //
+        //   }
+        [HttpGet]
+        public IActionResult GetallUser()
+            
+        {
+            var users = _userRepository.GetAllUser();
+            return Ok(users);
+        }
     }
 }

@@ -3,7 +3,7 @@ export class Books {
     title:string;
     author:string;
     isbn:string;
-    userid:number;
+    userId:number;
     user:any;
     constructor()
     {
@@ -11,7 +11,7 @@ export class Books {
         this.title="";
         this.author="";
         this.isbn="";
-        this.userid=0;
+        this.userId=0;
         this.user=null;
     
     }

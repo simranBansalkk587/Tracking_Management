@@ -17,12 +17,12 @@ export class LoginComponent {
 
   loginClick()
   {
+    debugger
     
-    alert(this.login.username)//testing
+   // alert(this.login.username)//testing
     this.loginService.CheckUser(this.login).subscribe(
       (response)=>{
-        
-        this.router.navigateByUrl("/home");
+        this.router.navigateByUrl("/books");
       },
       (error)=>{
         console.log(error);

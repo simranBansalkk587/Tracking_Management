@@ -64,6 +64,11 @@ namespace Tracking_Task
                 };
 
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

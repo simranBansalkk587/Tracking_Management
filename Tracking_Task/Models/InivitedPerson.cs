@@ -10,8 +10,10 @@ namespace Tracking_Task.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int InivitedTableId { get; set; }
+   
         public InivitedTable InivitedTable { get; set; }
-      
+       
 
     }
 }
+

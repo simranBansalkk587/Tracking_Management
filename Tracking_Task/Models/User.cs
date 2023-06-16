@@ -17,6 +17,6 @@ namespace Tracking_Task.Models
         public string Role { get; set; }
         [NotMapped]
         public string Token { get; set; }
-        
+       
     }
 }

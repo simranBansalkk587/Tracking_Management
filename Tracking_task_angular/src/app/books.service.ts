@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -10,6 +10,8 @@ import { Books } from './books';
 export class BooksService {
 
   constructor(private httpClient:HttpClient,private router:Router) { }
+  private apiUrl="https://localhost:44365/api/Book";
+
   getAllBooking():Observable<any>
   {
    // jwt
@@ -30,10 +32,13 @@ export class BooksService {
   }
   saveBooks(newBooks:Books):Observable<Books>
   {
-
     return this.httpClient.post<Books>("https://localhost:44365/api/Book",newBooks);
  
 
+  }
+  addBook(book: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer your-token');
+    return this.httpClient.post<any>(this.apiUrl, book, { headers });
   }
   UpdateBooks(EditBooks:Books):Observable<Books>
   {
@@ -44,6 +49,10 @@ export class BooksService {
   DeleteBooks(id:number):Observable<any>
   {
     return this.httpClient.delete<any>("https://localhost:44365/api/Book/"+id);
+  }
+  getById(userId:number):Observable<any>
+  {
+    return this.httpClient.get<any>("https://localhost:44365/api/Book/"+userId);
   }
 }
 // "https://localhost:44372/api/Ticket?id="+id);

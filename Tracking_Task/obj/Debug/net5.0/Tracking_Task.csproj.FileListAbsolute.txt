@@ -58,4 +58,3 @@ D:\Task_assignment\Tracking_Task\Tracking_Task\obj\Debug\net5.0\ref\Tracking_Tas
 D:\Task_assignment\Tracking_Task\Tracking_Task\obj\Debug\net5.0\Tracking_Task.pdb
 D:\Task_assignment\Tracking_Task\Tracking_Task\obj\Debug\net5.0\Tracking_Task.genruntimeconfig.cache
 D:\Task_assignment\Tracking_Task\Tracking_Task\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Task_assignment\Tracking_Task\Tracking_Task\obj\Debug\net5.0\Tracking_Task.csproj.AssemblyReference.cache

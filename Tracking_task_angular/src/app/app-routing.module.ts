@@ -7,6 +7,7 @@ import { BooksComponent } from './books/books.component';
 import { InviteTableComponent } from './invite-table/invite-table.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { InvitepersonComponent } from './inviteperson/inviteperson.component';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:"invitetable",component:InviteTableComponent},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
+  {path:"inviteperson",component:InvitepersonComponent}
 ];
 
 @NgModule({

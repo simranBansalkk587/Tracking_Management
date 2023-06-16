@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,16 +26,18 @@ namespace Tracking_Task.Controllers
        
         
         [HttpGet]
-        public IActionResult GetBooks()
-        
-        
+        public IActionResult GetBooks()                
         {
-            return Ok(_context.Books.Include(u => u.User).ToList());
+
+            var allBooks = _context.Books.Include(u => u.User).ToList();
+          
+            return Ok(allBooks);
 
         }
 
 
         [HttpPost]
+        
         public IActionResult BookSave([FromBody] Books books)
         {
             var userInDb = _context.Users.FirstOrDefault(u => u.Id == books.UserId);
@@ -48,7 +51,7 @@ namespace Tracking_Task.Controllers
             return BadRequest();
         }
 
-
+        
 
        [HttpPut]
         public IActionResult BookUpdate([FromBody] Books books)
@@ -59,9 +62,17 @@ namespace Tracking_Task.Controllers
                 books.User = userInDb;
                 _context.Books.Update(books);
                 _context.SaveChanges();
+
                 return Ok();
             }
             return BadRequest();
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetId(int id)
+        {
+           var getid = _context.Books.Include(x=>x.User).Where(x => x.UserId == id).ToList();
+           // var getid = _context.Users.FirstOrDefault(y => y.Id == books.UserId);
+            return Ok(getid);
         }
 
 

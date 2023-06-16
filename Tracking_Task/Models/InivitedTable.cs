@@ -12,8 +12,6 @@ namespace Tracking_Task.Models
         public int UserId { get; set; }
         public User User { get; set; }
         public TrackStatus Status { get; set; }
-        public string Email { get; set; }
-        public EmailStatus EmailStatus { get; set; }
     }
    }
 
