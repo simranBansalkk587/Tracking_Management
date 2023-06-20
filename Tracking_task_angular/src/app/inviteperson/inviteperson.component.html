@@ -11,61 +11,65 @@
            <div class="card p-0" style="width: 21rem;" >
                
                  <div>
-                   <p class="text-info"><td>{{invite.user.name}}</td></p>
+                   <p class="text-info"><td>{{invite.user.name}}</td>
+                   </p>
                 
                    
+                 </div>
+                 <div>
+                  <button class="col-sm-12 text-info" data-toggle="modal"(click)="EditClick(invite)" data-target="#editmodal">Show more</button>
+
                  </div>
                  
                  
                </div>
-               <button class="col-sm-9 text-info" data-toggle="modal" data-target="#editmodal">Show more</button>
              </div>
            </div>
+           
        </div>
            </div>
        </div>
      
-       <!-- <div class="modal" tabindex="-1" role="dialog" id="editmodal"> 
+       <div class="modal" tabindex="-1" role="dialog" id="editmodal"> 
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title btn btn-info">
-                 </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <h5 class="modal-title">
+                User</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+                 <span aria-hidden="true">&times;</span>
+              </button> 
             </div>
             <div class="modal-body">
              <div  class="form-group row">
-                <label for="txttitle" class="col-sm-4">Name</label>
+                <label for="txtname" class="col-sm-4">Name</label>
                 <div class="col-sm-8">
-                    <input id="txttitle" [(ngModel)]="EditInvite.user.name" type="text" name="title" placeholder="Enter Title" class="form-control">
+                    <input id="txtname" [(ngModel)]="EditInvite.user.name" type="text" name="name" placeholder="Enter name" class="form-control">
                 </div>
              </div>
              <div  class="form-group row">
-                <label for="txtauthor" class="col-sm-4"> Address</label>
+                <label for="txtaddress" class="col-sm-4"> Address</label>
                 <div class="col-sm-8">
-                    <input id="txtauthor" [(ngModel)]="EditInvite.user.address" type="text" name="author" placeholder="Enter Author" class="form-control">
+                    <input id="txtaddress" [(ngModel)]="EditInvite.user.address" type="text" name="address" placeholder="Enter Address" class="form-control">
                 </div>
              </div>
              <div class="form-group row">
                     
-                <label for="txtisbn" class="col-sm-4 col-form-label">Age</label>
+                <label for="txtage" class="col-sm-4 col-form-label">Age</label>
                 <div class="col-sm-8">
-                <input id="txtisbn"[(ngModel)]="EditInvite.user.age" type="text"name="isbn"placeholder="Enter ISBN"class="form-control" />
+                <input id="txtage"[(ngModel)]="EditInvite.user.age" type="text"name="age"placeholder="Enter Age"class="form-control" />
               </div>
               </div>
               <div class="form-group row">
                     
-                <label for="txtuser" class="col-sm-4 col-form-label">Email</label>
+                <label for="txtemail" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-8">
-                <input id="txtuser"[(ngModel)]="EditInvite.user.email" type="text"name="userId"placeholder="Enter UserId"class="form-control" />
+                <input id="txtemail"[(ngModel)]="EditInvite.user.email" type="text"name="email"placeholder="Enter Email"class="form-control" />
               </div>
               </div>
             </div>
-            
             
             </div>
            
           </div>
-        </div> -->
+        </div>

@@ -140,6 +140,16 @@ namespace Tracking_Task.Controllers
 
             return Ok();
         }
+        [HttpGet("approved")]
+        public IActionResult GetApprovedUsers()
+        {
+            var approvedUsers = _Context.InivitedTables
+                .Where(invited => invited.Status == TrackStatus.Approved)
+                .Select(invited => invited.User)
+                .ToList();
+
+            return Ok(approvedUsers);
+        }
 
         //    [HttpGet("api/invited-tables")]
         //    public IActionResult GetInvitedTableByEmail(string email)
@@ -158,28 +168,28 @@ namespace Tracking_Task.Controllers
 
         //        return Ok(invitedTable);
         //    }
-    //    [HttpGet("api/invited-tables")]
-    //    public IActionResult GetInvitedTableByEmail([FromQuery] string email)
-    //    {
-    //        if (string.IsNullOrEmpty(email))
-    //        {
-    //            return BadRequest("Email parameter is required.");
-    //        }
+        //    [HttpGet("api/invited-tables")]
+        //    public IActionResult GetInvitedTableByEmail([FromQuery] string email)
+        //    {
+        //        if (string.IsNullOrEmpty(email))
+        //        {
+        //            return BadRequest("Email parameter is required.");
+        //        }
 
-    //        var invitedTable = _Context.InivitedTables.FirstOrDefault(i => i.Email == email);
+        //        var invitedTable = _Context.InivitedTables.FirstOrDefault(i => i.Email == email);
 
-    //        if (invitedTable == null)
-    //        {
-    //            return NotFound();
-    //        }
+        //        if (invitedTable == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-    //        if (invitedTable.EmailStatus == EmailStatus.Rejected)
-    //        {
-    //            return BadRequest("Access Denied");
-    //        }
+        //        if (invitedTable.EmailStatus == EmailStatus.Rejected)
+        //        {
+        //            return BadRequest("Access Denied");
+        //        }
 
-    //        return Ok(invitedTable);
-    //    }
+        //        return Ok(invitedTable);
+        //    }
 
 
     }

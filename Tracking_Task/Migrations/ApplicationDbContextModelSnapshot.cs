@@ -48,26 +48,6 @@ namespace Tracking_Task.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Tracking_Task.Models.InivitedPerson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("InivitedTableId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InivitedTableId");
-
-                    b.ToTable("InivitedPerson");
-                });
-
             modelBuilder.Entity("Tracking_Task.Models.InivitedTable", b =>
                 {
                     b.Property<int>("Id")
@@ -86,6 +66,42 @@ namespace Tracking_Task.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("InivitedTables");
+                });
+
+            modelBuilder.Entity("Tracking_Task.Models.TrackDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BooksId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InivitedTableId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Perviouschange")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Trackingdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BooksId");
+
+                    b.HasIndex("InivitedTableId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TrackDetails");
                 });
 
             modelBuilder.Entity("Tracking_Task.Models.User", b =>
@@ -129,17 +145,6 @@ namespace Tracking_Task.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Tracking_Task.Models.InivitedPerson", b =>
-                {
-                    b.HasOne("Tracking_Task.Models.InivitedTable", "InivitedTable")
-                        .WithMany()
-                        .HasForeignKey("InivitedTableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("InivitedTable");
-                });
-
             modelBuilder.Entity("Tracking_Task.Models.InivitedTable", b =>
                 {
                     b.HasOne("Tracking_Task.Models.User", "User")
@@ -147,6 +152,31 @@ namespace Tracking_Task.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Tracking_Task.Models.TrackDetail", b =>
+                {
+                    b.HasOne("Tracking_Task.Models.Books", "Books")
+                        .WithMany()
+                        .HasForeignKey("BooksId");
+
+                    b.HasOne("Tracking_Task.Models.InivitedTable", "InivitedTable")
+                        .WithMany()
+                        .HasForeignKey("InivitedTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tracking_Task.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Books");
+
+                    b.Navigation("InivitedTable");
 
                     b.Navigation("User");
                 });

@@ -19,6 +19,7 @@ export class InviteTableComponent {
  email:string="";
  
  userId:number|undefined|null|any;
+//  name:string|undefined|null|any;
  
  
 
@@ -26,9 +27,10 @@ export class InviteTableComponent {
  constructor(private inviteService:InviteService,private registerService:RegisterService){}
  ngOnInit()
  {
-  this.userId=sessionStorage.getItem('id');
-  this.getbyid(this.userId);
-//  this.Getall();
+ // this.userId=sessionStorage.getItem('id');
+  // this.name=sessionStorage.getItem('name');
+ // this.getbyid(this.userId);
+ this.Getall();
 this.getdep();
  }
  getbyid(userId:number){

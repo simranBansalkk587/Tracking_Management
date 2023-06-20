@@ -10,6 +10,7 @@ namespace Tracking_Task.Models
         public int Id { get; set; }
        
         public int UserId { get; set; }
+             
         public User User { get; set; }
         public TrackStatus Status { get; set; }
     }

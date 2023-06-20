@@ -16,6 +16,6 @@ namespace Tracking_Task.Data
         public DbSet<Books> Books { get; set; }
         public DbSet <User>Users { get; set; }
         public DbSet <InivitedTable>InivitedTables { get; set; }
-        public DbSet <InivitedPerson> InivitedPerson { get; set; }
+        public DbSet <TrackDetail>TrackDetails { get; set; }
     }
 }

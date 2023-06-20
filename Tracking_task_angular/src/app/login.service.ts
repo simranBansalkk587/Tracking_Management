@@ -66,6 +66,8 @@ Books:any;
   {
     this.CurrentUsername="";
     sessionStorage.removeItem("currentUser");
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("id");
     this.router.navigateByUrl("/login");
   }
 }

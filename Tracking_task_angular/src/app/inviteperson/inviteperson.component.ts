@@ -10,17 +10,40 @@ import { InviteService } from '../invite.service';
 export class InvitepersonComponent {
   InviteList:Invite[]=[];
   EditInvite:Invite=new Invite();
+  userId:number|undefined|null|any;
 
   constructor(private inviteService:InviteService){}
   ngOnInit()
   {
-    this.Getall();
+   // this.Getall();
+this.userId=sessionStorage.getItem('id');
+    this.getbyid(this.userId);
+
 
   }
+  getbyid(userId:number){
+    if(this.userId){
+      this.inviteService.getById(this.userId).subscribe(
+        (response)=>{
+          console.log(response);
+          this.InviteList=response;
+          console.log(this.EditInvite);
+        },
+     
+      (error)=>{
+        console.log(error);
+        this.Getall();
+  
+      }
+      )
+    }
+   }
+ 
   Getall()
   {
-    this.inviteService.GetInvite().subscribe(
+    this.inviteService.GetInvitePerson().subscribe(
       (Response)=>{
+        // this.InviteList=Response;
         this.InviteList=Response;
         // console.log(this.EmployeeList);
       },
@@ -31,9 +54,10 @@ export class InvitepersonComponent {
   }
   EditClick(invite:Invite)
   {
-    
-   //alert(invite.title)
+   alert 
   this.EditInvite=invite;
   }
+
+
   
 }

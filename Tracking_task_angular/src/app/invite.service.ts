@@ -48,4 +48,8 @@ export class InviteService {
     return this.httpclient.get<any>("https://localhost:44365/api/User")
 
   }
+  GetInvitePerson():Observable<any>
+  {
+    return this.httpclient.get<any>("https://localhost:44365/api/InvitedTable/approved");
+  }
 }
