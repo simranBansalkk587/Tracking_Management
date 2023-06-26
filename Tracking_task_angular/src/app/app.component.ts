@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from './login.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,20 @@ import { LoginService } from './login.service';
 })
 export class AppComponent {
   title = 'Tracking_task_angular';
-  constructor(public loginService:LoginService,){}
+  isLoggedIn:boolean=true;
+  constructor(public loginService:LoginService,private router:Router){}
+  ngOnInit(): void {
+    
+
+    this.router.events.subscribe(event=>{
+      this.isLoggedIn=sessionStorage.getItem('isLoggedIn')==='true';
+      if(event instanceof NavigationEnd){
+ let role = sessionStorage.getItem('role');
+ 
+      }
+    })
+  }
+
   logoutClick()
   {
     this.loginService.logout();

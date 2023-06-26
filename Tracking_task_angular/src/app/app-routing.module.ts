@@ -8,16 +8,18 @@ import { InviteTableComponent } from './invite-table/invite-table.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InvitepersonComponent } from './inviteperson/inviteperson.component';
+import { JwtactiateguradService } from './jwtactiategurad.service';
+import { RoleguradService } from './rolegurad.service';
 
 const routes: Routes = [
-  {path:"home",component:HomeComponent},
+  {path:"home",component:HomeComponent,canActivate:[JwtactiateguradService]},
   {path:"about",component:AboutComponent},
   {path:"contact",component:ContactComponent},
-  {path:"books",component:BooksComponent},
-  {path:"invitetable",component:InviteTableComponent},
+  {path:"books",component:BooksComponent,canActivate:[JwtactiateguradService]},
+  {path:"invitetable",component:InviteTableComponent,canActivate:[JwtactiateguradService]},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
-  {path:"inviteperson",component:InvitepersonComponent}
+  {path:"inviteperson",component:InvitepersonComponent,canActivate:[JwtactiateguradService]}
 ];
 
 @NgModule({

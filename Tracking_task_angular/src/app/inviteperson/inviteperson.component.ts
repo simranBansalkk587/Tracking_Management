@@ -1,3 +1,5 @@
+import { TrackData } from './../track-data';
+import { InvitedpersonService } from './../invitedperson.service';
 import { Component } from '@angular/core';
 import { Invite } from '../invite';
 import { InviteService } from '../invite.service';
@@ -9,16 +11,18 @@ import { InviteService } from '../invite.service';
 })
 export class InvitepersonComponent {
   InviteList:Invite[]=[];
+  Tracklist:TrackData[]=[];
+  Editdata:TrackData=new TrackData();
   EditInvite:Invite=new Invite();
   userId:number|undefined|null|any;
 
-  constructor(private inviteService:InviteService){}
+  constructor(private inviteService:InviteService,private invitedpersonService:InvitedpersonService){}
   ngOnInit()
   {
-   // this.Getall();
+    this.Getall();
 this.userId=sessionStorage.getItem('id');
     this.getbyid(this.userId);
-
+this.getTrackdata()
 
   }
   getbyid(userId:number){
@@ -57,6 +61,24 @@ this.userId=sessionStorage.getItem('id');
    alert 
   this.EditInvite=invite;
   }
+  DataEdit(TrackData:TrackData)
+  {
+    this.Editdata=TrackData;
+
+  }
+getTrackdata()
+{
+  this.invitedpersonService.GetTrackData().subscribe(
+    (Response)=>{
+      this.Tracklist=Response;
+
+    },
+    (Error)=>{
+    
+   console.log(Error);
+    }
+  )
+}
 
 
   

@@ -1,6 +1,6 @@
-<div class="row-2">
+<div class="row-2" data-toggle="modal">
     <h2 class="
-     text-info text-center">Invite Person</h2>
+     text-info text-center" >Invite Person</h2>
     </div>
     <br>
     <div class="col-12 m-5">
@@ -11,7 +11,7 @@
            <div class="card p-0" style="width: 21rem;" >
                
                  <div>
-                   <p class="text-info"><td>{{invite.user.name}}</td>
+                   <p class="text-info"><td>{{invite.user.email }}</td>
                    </p>
                 
                    
@@ -73,3 +73,114 @@
            
           </div>
         </div>
+        <div class="border">
+          <table class="table table-striped table-border">
+              <thead>
+                  <tr>
+                      <!-- <th>Name</th> -->
+                      <th>BookId</th>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>ISBN</th>
+                      <th>User</th>
+                     
+                      <!-- <th>Track Status</th> -->
+                      <th>Change</th>
+                      <!-- <th>Email Status</th> -->
+                      <th>Time</th>
+                      <th>Track Details</th>
+                  </tr>
+              </thead>                                                                                                                                                              
+              <tbody>
+                <tr *ngFor='let track of Tracklist'>
+                  <td>{{track.booksId}}</td>
+                  <td>{{track.books.title}}</td>
+                 <td>{{track.books.author}}</td>
+                 <td>{{track.books.isbn}}</td>
+                 <td>{{track.books.user.name}}</td>
+                 <td>{{track.change}}</td>
+                 <td>{{track.trackingdate}}</td>
+                 
+                 <td>
+                  <button class="btn btn-info m-1"(click)="DataEdit(track)" data-toggle="modal" data-target="#Trackmodal">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  </button>
+                 
+                </td>
+                 
+                    
+                 
+                </tr> 
+              </tbody>
+          </table>
+      </div>
+      <!-- Edit -->
+      
+ <div class="modal" tabindex="-1" role="dialog" id="Trackmodal"> 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title btn btn-info">
+            TrackData</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div  class="form-group row">
+          <label for="txttitle" class="col-sm-4">Title</label>
+          <div class="col-sm-8">
+              <input id="txttitle"[(ngModel)]="Editdata.books.title" type="text" name="title" placeholder="Enter Title" class="form-control">
+          </div>
+       </div>
+       <div  class="form-group row">
+          <label for="txtauthor" class="col-sm-4"> Author</label>
+          <div class="col-sm-8">
+              <input id="txtauthor"[(ngModel)]="Editdata.books.author" type="text" name="author" placeholder="Enter Author" class="form-control">
+          </div>
+       </div>
+       <div class="form-group row">
+              
+          <label for="txtisbn" class="col-sm-4 col-form-label">ISBN</label>
+          <div class="col-sm-8">
+          <input id="txtisbn"[(ngModel)]="Editdata.books.isbn" type="text"name="isbn"placeholder="Enter ISBN"class="form-control" />
+        </div>
+        </div>
+        
+        <div class="form-group row">
+              
+          <label for="txtuser" class="col-sm-4 col-form-label">User</label>
+          <div class="col-sm-8">
+          <input id="txtuser"[(ngModel)]="Editdata.books.user.name" type="text"name="userId"placeholder="Enter UserId"class="form-control" />
+        </div>
+        </div>
+        <div class="form-group row">
+              
+          <label for="txtemail" class="col-sm-4 col-form-label">Email</label>
+          <div class="col-sm-8">
+          <input id="txtemail"[(ngModel)]="Editdata.books.user.email" type="text"name="userId"placeholder="Enter UserId"class="form-control" />
+        </div>
+        </div>
+        <div class="form-group row">
+              
+          <label for="txtchange" class="col-sm-4 col-form-label">Change</label>
+          <div class="col-sm-8">
+          <input id="txtchange"[(ngModel)]="Editdata.change" type="text"name="Change"placeholder="Enter Change"class="form-control" />
+        </div>
+        </div>
+        <div class="form-group row">
+              
+          <label for="txttime" class="col-sm-4 col-form-label">Time</label>
+          <div class="col-sm-8">
+          <input id="txttime"[(ngModel)]="Editdata.trackingdate" type="text"name="date"placeholder="Enter Change"class="form-control" />
+        </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      
+      </div>
+     
+    </div>
+  </div>

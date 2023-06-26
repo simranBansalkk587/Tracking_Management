@@ -13,4 +13,8 @@ export class InvitedpersonService {
   // {
   //   return this.httpClient.get<any>("https://localhost:44365/api/InvitedTable/approved")
   // }
+  GetTrackData():Observable<any>
+  {
+    return this.httpClient.get<any>("https://localhost:44365/api/TrackDetails")
+  }
 }

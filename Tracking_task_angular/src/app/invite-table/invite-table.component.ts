@@ -19,7 +19,7 @@ export class InviteTableComponent {
  email:string="";
  
  userId:number|undefined|null|any;
-//  name:string|undefined|null|any;
+
  
  
 
